@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | TechNova Computer Academy</title>
+    <!-- Importing Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- Hero / Home Section --- */
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero-section p.subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: #e2e8f0;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: #fbbf24;
+        }
+
+        /* --- Course Section Title --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* --- Course Grid Layout --- */
+        .course-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- Individual Course Cards --- */
+        .course-card {
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px rgba(0,0,0,0.1);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .course-desc {
+            color: #4b5563;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #374151;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 15px;
+        }
+
+        /* --- More Details Button --- */
+        .btn-details {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, color 0.3s ease;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* --- Unique Light Colors for Each Card --- */
+        
+        /* 1. Web Development (Light Blue) */
+        .card-blue { background-color: #e0f2fe; }
+        .card-blue .course-icon { color: #0284c7; }
+        .card-blue .btn-details { background-color: #0284c7; color: white; }
+        .card-blue .btn-details:hover { background-color: #0369a1; }
+
+        /* 2. Data Science (Light Green) */
+        .card-green { background-color: #dcfce7; }
+        .card-green .course-icon { color: #16a34a; }
+        .card-green .btn-details { background-color: #16a34a; color: white; }
+        .card-green .btn-details:hover { background-color: #15803d; }
+
+        /* 3. Cyber Security (Light Pink/Red) */
+        .card-pink { background-color: #ffe4e6; }
+        .card-pink .course-icon { color: #e11d48; }
+        .card-pink .btn-details { background-color: #e11d48; color: white; }
+        .card-pink .btn-details:hover { background-color: #be123c; }
+
+        /* 4. Cloud Computing (Light Amber) */
+        .card-amber { background-color: #fef3c7; }
+        .card-amber .course-icon { color: #d97706; }
+        .card-amber .btn-details { background-color: #d97706; color: white; }
+        .card-amber .btn-details:hover { background-color: #b45309; }
+
+        /* 5. UI/UX Design (Light Purple) */
+        .card-purple { background-color: #f3e8ff; }
+        .card-purple .course-icon { color: #9333ea; }
+        .card-purple .btn-details { background-color: #9333ea; color: white; }
+        .card-purple .btn-details:hover { background-color: #7e22ce; }
+
+        /* 6. Mobile App Dev (Light Teal) */
+        .card-teal { background-color: #ccfbf1; }
+        .card-teal .course-icon { color: #0d9488; }
+        .card-teal .btn-details { background-color: #0d9488; color: white; }
+        .card-teal .btn-details:hover { background-color: #0f766e; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #1e293b;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 20px;
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+            .hero-section h1 { font-size: 2.2rem; }
+            .hero-section p.subtitle { font-size: 1rem; }
+            .course-container { padding: 0 15px 50px 15px; gap: 20px; }
+            .course-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero / Home Section -->
+    <header class="hero-section">
+        <h1>TechNova Computer Academy</h1>
+        <p class="subtitle">Empowering the next generation of tech leaders. We offer industry-leading curriculum, hands-on projects, and expert mentorship to help you launch or accelerate your career in technology. Start your journey today.</p>
+        
+        <div class="hero-stats">
+            <div class="stat-item">
+                <h3>10k+</h3>
+                <p>Students Enrolled</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Expert Mentors</p>
+            </div>
+            <div class="stat-item">
+                <h3>95%</h3>
+                <p>Placement Rate</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="section-header">
+            <h2>Our Featured Courses</h2>
+            <p>Explore our carefully crafted programs designed for all skill levels.</p>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="course-container">
+
+            <!-- Course 1: Light Blue -->
+            <div class="course-card card-blue">
+                <div class="course-icon">🌐</div>
+                <h3 class="course-title">Full-Stack Web Development</h3>
+                <p class="course-desc">Master front-end and back-end technologies. Learn HTML, CSS, JavaScript, React, Node.js, and database management to build fully functional web applications from scratch.</p>
+                <div class="course-meta">
+                    <span>⏱️ 6 Months</span>
+                    <span>📊 Beginner to Pro</span>
+                </div>
+                <a href="#details-web" class="btn-details">More Details</a>
+            </div>
+
+            <!-- Course 2: Light Green -->
+            <div class="course-card card-green">
+                <div class="course-icon">🤖</div>
+                <h3 class="course-title">Data Science & AI</h3>
+                <p class="course-desc">Dive into the world of data. Learn Python, Machine Learning algorithms, Data Visualization, and Neural Networks to extract insights and build predictive AI models.</p>
+                <div class="course-meta">
+                    <span>⏱️ 8 Months</span>
+                    <span>📊 Intermediate</span>
+                </div>
+                <a href="#details-data" class="btn-details">More Details</a>
+            </div>
+
+            <!-- Course 3: Light Pink -->
+            <div class="course-card card-pink">
+                <div class="course-icon">🔒</div>
+                <h3 class="course-title">Cyber Security & Hacking</h3>
+                <p class="course-desc">Become a certified ethical hacker. Understand network protocols, penetration testing, cryptography, and how to secure enterprise systems against modern cyber threats.</p>
+                <div class="course-meta">
+                    <span>⏱️ 5 Months</span>
+                    <span>📊 Advanced</span>
+                </div>
+                <a href="#details-security" class="btn-details">More Details</a>
+            </div>
+
+            <!-- Course 4: Light Amber -->
+            <div class="course-card card-amber">
+                <div class="course-icon">☁️</div>
+                <h3 class="course-title">Cloud Computing (AWS/Azure)</h3>
+                <p class="course-desc">Design scalable infrastructure in the cloud. Get hands-on experience with Amazon Web Services and Microsoft Azure, focusing on deployment, serverless computing, and security.</p>
+                <div class="course-meta">
+                    <span>⏱️ 4 Months</span>
+                    <span>📊 Intermediate</span>
+                </div>
+                <a href="#details-cloud" class="btn-details">More Details</a>
+            </div>
+
+            <!-- Course 5: Light Purple -->
+            <div class="course-card card-purple">
+                <div class="course-icon">✨</div>
+                <h3 class="course-title">UI/UX Product Design</h3>
+                <p class="course-desc">Create beautiful and intuitive user experiences. Master Figma, wireframing, user research, prototyping, and modern design principles to craft engaging digital products.</p>
+                <div class="course-meta">
+                    <span>⏱️ 3 Months</span>
+                    <span>📊 Beginner Friendly</span>
+                </div>
+                <a href="#details-design" class="btn-details">More Details</a>
+            </div>
+
+            <!-- Course 6: Light Teal -->
+            <div class="course-card card-teal">
+                <div class="course-icon">📱</div>
+                <h3 class="course-title">Mobile App Development</h3>
+                <p class="course-desc">Build native and cross-platform mobile apps. Learn Flutter and React Native to deploy high-performance applications on both iOS and Android simultaneously.</p>
+                <div class="course-meta">
+                    <span>⏱️ 6 Months</span>
+                    <span>📊 Beginner to Pro</span>
+                </div>
+                <a href="#details-mobile" class="btn-details">More Details</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TechNova Computer Academy. All rights reserved. | <a href="#" style="color: #60a5fa; text-decoration: none;">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>
